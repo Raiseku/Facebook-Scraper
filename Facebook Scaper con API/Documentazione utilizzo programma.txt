@@ -1,0 +1,65 @@
+Passo 1 ) Come trovare l'ID dell'utente : 
+	Il primo passo è quello di visitare la pagina della persona interessata su Facebook
+	Dopodichè si deve premere (f12) oppure Click destro -> visualizza sorgente pagina e cercare
+	la parola "profile_id", essa è l'ID dell'utente.
+	
+Passo 2 ) Come trovare l'ID del post da analizzare
+	Cliccare sul campo della data in cui quel post è stato pubblicato sotto il nome dell'utente
+	che lo ha scritto (è della forma [numero - mese - ora]
+	Una volta aperto il post completo cliccare sull'URL e copiare la sequenza numerica posta come ultimo
+	campo. Esempio : https://www.facebook.com/alessio.mancinelli.12/posts/2245765302155605
+	2245765302155605 è l'ID del post.
+
+Passo 3) Come trovare l'ID del commento da analizzare:
+	Una volta entrati nel post si deve cliccare, come al passo precedente, sulla data in cui quel commento
+	è stato scritto.
+	Una volta fatto si deve cliccare sull'URL della pagina e copiare la sequenza di numeri che corrisponde a
+	"comment_id" Esempio:
+	https://www.facebook.com/alessio.mancinelli.12/posts/2245765302155605?comment_id=2245766345488834&comment_tracking=%7B%22tn%22%3A%22R%22%7D
+	2245766345488834 è l'id del commento ricercato.
+
+
+Problemi e Limitazioni del programma : 
+Questo programma consente di esportare in modalità non modificabile tutto il contenuto di un post,
+ovvero chi l'ha scritto, cosa ha scritto (permette di visualizzare anche video/foto/gif/Sticker)
+e tutti i commenti sottostanti.
+Il programma successivamente chiederà all'utente quale commento desidera esportare, una volta inserito
+l'id di quest'ultimo verrà copiato sul file "lista_commenti" sia il commento principale che tutte le risposte a quest'ultimo.
+
+Problema API Permission Denied
+
+Facebook dopo lo scandalo di Cambridge Analytica ha imposto una rigida misura
+contro chiunque voglia ottenere dati da quest'ultimo.
+Per questo progetto sono state utilizzare le API di Facebook, ovvero degli strumenti
+che le maggiori software house come Facebook mettono a disposizione degli sviluppatori
+per facilitare il loro compito nella realizzazione di applicazioni di vario genere.
+
+Pochi anni fa queste API permettevano l'accesso a tutto il grafo di Facebook
+quindi un utente qualsiasi poteva, in qualunque momento, ottenere tutti i dati 
+che voleva tramite un semplice Script, oggi, per fortuna, le cose sono cambiate in quanto
+Facebook, prima di dare diretto accesso agli utenti ai dati, deve necessariamente
+"controllare" le finalità dell'applicazione creata e, in base alle richieste dell'utente, 
+concedere le varie funzioni.
+La funzione che manca al programma da me creato è la numero 10 ovvero il "API Permission Denied"
+Se si inserisce l'id di un utente il quale non ha acconsentito all'ottenimento di dati da parte
+del sottoscritto allora il programma darà il seguente errore : 
+
+facebook.GraphAPIError: Unsupported get request. Object with ID '100000518644274' does not exist, 
+cannot be loaded due to missing permissions, or does not support this operation.
+Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api
+
+Se si volesse risolvere questo problema bisognerebbe prima pubblicare l'applicazione e successivamente
+richiedere all'utente l'utilizzo dei suoi dati personali. Per questo progetto, dato che ogni utente
+ha libero accesso solamente ai propri dati, è stato creato un post solamente per la prova dell'applicazione
+sul mio profilo, nel caso in cui, all'interno delle risposte ci fosse anche il commento di un'altro utente
+allora il programma non funziona in quanto l'utente in questione dovrebbe dare libero accesso
+dei suoi dati all'applicazione
+
+Problema delle pagine pubbliche : 
+
+facebook.GraphAPIError: (#10) To use 'Page Public Content Access', your use of this endpoint must be reviewed and approved by Facebook.
+To submit this 'Page Public Content Access' feature for review please read our documentation on reviewable features: https://developers.facebook.com/docs/apps/review
+
+Per risolvere questo problema facebook stesso deve certificare l'app e acconsentire l'utilizzo di dati posti in una determinata
+pagina pubblica, questa misura di sicurezza è stata presa per evitare che le informazioni
+ottenute non vengano utilizzate per terzi scopi.
