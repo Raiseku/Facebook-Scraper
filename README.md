@@ -1,5 +1,3 @@
-# API-Facebook-Scraper
+# Facebook Scraper with API
 
-Progetto di Informatica Forense scritto in Python che consente di salvare in un file il testo di un post su Facebook.
-Del post viene salvato sia il testo principale, sia tutti i commenti.
-Il programma utilizza direttamente le API fornite dal social.
+Forensic Computer Science project written in Python that allows you to save the text of a Facebook post in a file. Both the main text and all comments of the post are saved. The program directly uses the API provided by the social network.
